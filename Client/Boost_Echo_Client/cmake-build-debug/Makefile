@@ -57,10 +57,10 @@ RM = /cygdrive/c/Users/bayan/AppData/Local/JetBrains/CLion2021.2/cygwin_cmake/bi
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client
+CMAKE_SOURCE_DIR = /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client/cmake-build-debug
+CMAKE_BINARY_DIR = /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client/cmake-build-debug/CMakeFiles /cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,6 +177,30 @@ src/echoClient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s
 .PHONY : src/echoClient.cpp.s
 
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +216,9 @@ help:
 	@echo "... src/echoClient.o"
 	@echo "... src/echoClient.i"
 	@echo "... src/echoClient.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

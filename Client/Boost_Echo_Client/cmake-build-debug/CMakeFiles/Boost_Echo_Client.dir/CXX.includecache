@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client/include/connectionHandler.h
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/connectionHandler.h
 string
 -
 iostream
@@ -14,9 +14,15 @@ iostream
 boost/asio.hpp
 -
 
-/cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client/src/connectionHandler.cpp
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/connectionHandler.cpp
 ../include/connectionHandler.h
-/cygdrive/c/Users/bayan/Desktop/SPL3/Assignment3SPL/Boost_Echo_Client/include/connectionHandler.h
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/connectionHandler.h
+
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/echoClient.cpp
+stdlib.h
+-
+../include/connectionHandler.h
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/connectionHandler.h
 
 /cygdrive/c/cygwin64/usr/include/_ansi.h
 newlib.h
