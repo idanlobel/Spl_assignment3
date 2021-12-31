@@ -19,6 +19,7 @@ public class Reactor<T> implements Server<T> {
     private final Supplier<MessageEncoderDecoder<T>> readerFactory;
     private final ActorThreadPool pool;
     private Selector selector;
+    private client_controller cc;
 
 
     private Thread selectorThread;
@@ -34,6 +35,7 @@ public class Reactor<T> implements Server<T> {
         this.port = port;
         this.protocolFactory = protocolFactory;
         this.readerFactory = readerFactory;
+        this.cc=new client_controller();
     }
 
     @Override
@@ -41,21 +43,15 @@ public class Reactor<T> implements Server<T> {
 	selectorThread = Thread.currentThread();
         try (Selector selector = Selector.open();
                 ServerSocketChannel serverSock = ServerSocketChannel.open()) {
-
             this.selector = selector; //just to be able to close
-
             serverSock.bind(new InetSocketAddress(port));
             serverSock.configureBlocking(false);
             serverSock.register(selector, SelectionKey.OP_ACCEPT);
 			System.out.println("Server started");
-
             while (!Thread.currentThread().isInterrupted()) {
-
                 selector.select();
                 runSelectionThreadTasks();
-
                 for (SelectionKey key : selector.selectedKeys()) {
-
                     if (!key.isValid()) {
                         continue;
                     } else if (key.isAcceptable()) {
@@ -64,11 +60,8 @@ public class Reactor<T> implements Server<T> {
                         handleReadWrite(key);
                     }
                 }
-
                 selector.selectedKeys().clear(); //clear the selected keys set so that we can know about new events
-
             }
-
         } catch (ClosedSelectorException ex) {
             //do nothing - server was requested to be closed
         } catch (IOException ex) {
@@ -101,6 +94,9 @@ public class Reactor<T> implements Server<T> {
                 protocolFactory.get(),
                 clientChan,
                 this);
+
+        handler.continueRead();
+
         clientChan.register(selector, SelectionKey.OP_READ, handler);
     }
 
@@ -130,5 +126,12 @@ public class Reactor<T> implements Server<T> {
     public void close() throws IOException {
         selector.close();
     }
+
+    public void get_bytes(Byte[] bytes)
+    {
+        this.cc.procces_bytes(bytes);
+    }
+
+
 
 }

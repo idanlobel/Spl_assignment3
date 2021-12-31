@@ -37,6 +37,14 @@ public class client_controller<T> implements Connections<T> {
 
     }
 
+    public void procces_bytes(Byte[] bytes)
+    {
+        if(bytes[0].intValue()==01)
+        {
+
+        }
+    }
+
 
 
 }
