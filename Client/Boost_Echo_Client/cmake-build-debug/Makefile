@@ -129,6 +129,54 @@ Boost_Echo_Client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/build
 .PHONY : Boost_Echo_Client/fast
 
+src/Connection_thread.o: src/Connection_thread.cpp.o
+.PHONY : src/Connection_thread.o
+
+# target to build an object file
+src/Connection_thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o
+.PHONY : src/Connection_thread.cpp.o
+
+src/Connection_thread.i: src/Connection_thread.cpp.i
+.PHONY : src/Connection_thread.i
+
+# target to preprocess a source file
+src/Connection_thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.i
+.PHONY : src/Connection_thread.cpp.i
+
+src/Connection_thread.s: src/Connection_thread.cpp.s
+.PHONY : src/Connection_thread.s
+
+# target to generate assembly for a file
+src/Connection_thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.s
+.PHONY : src/Connection_thread.cpp.s
+
+src/IO_thread.o: src/IO_thread.cpp.o
+.PHONY : src/IO_thread.o
+
+# target to build an object file
+src/IO_thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o
+.PHONY : src/IO_thread.cpp.o
+
+src/IO_thread.i: src/IO_thread.cpp.i
+.PHONY : src/IO_thread.i
+
+# target to preprocess a source file
+src/IO_thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.i
+.PHONY : src/IO_thread.cpp.i
+
+src/IO_thread.s: src/IO_thread.cpp.s
+.PHONY : src/IO_thread.s
+
+# target to generate assembly for a file
+src/IO_thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.s
+.PHONY : src/IO_thread.cpp.s
+
 src/connectionHandler.o: src/connectionHandler.cpp.o
 .PHONY : src/connectionHandler.o
 
@@ -152,30 +200,6 @@ src/connectionHandler.s: src/connectionHandler.cpp.s
 src/connectionHandler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s
 .PHONY : src/connectionHandler.cpp.s
-
-src/echoClient.o: src/echoClient.cpp.o
-.PHONY : src/echoClient.o
-
-# target to build an object file
-src/echoClient.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o
-.PHONY : src/echoClient.cpp.o
-
-src/echoClient.i: src/echoClient.cpp.i
-.PHONY : src/echoClient.i
-
-# target to preprocess a source file
-src/echoClient.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i
-.PHONY : src/echoClient.cpp.i
-
-src/echoClient.s: src/echoClient.cpp.s
-.PHONY : src/echoClient.s
-
-# target to generate assembly for a file
-src/echoClient.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Boost_Echo_Client.dir/build.make CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s
-.PHONY : src/echoClient.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -210,12 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Boost_Echo_Client"
+	@echo "... src/Connection_thread.o"
+	@echo "... src/Connection_thread.i"
+	@echo "... src/Connection_thread.s"
+	@echo "... src/IO_thread.o"
+	@echo "... src/IO_thread.i"
+	@echo "... src/IO_thread.s"
 	@echo "... src/connectionHandler.o"
 	@echo "... src/connectionHandler.i"
 	@echo "... src/connectionHandler.s"
-	@echo "... src/echoClient.o"
-	@echo "... src/echoClient.i"
-	@echo "... src/echoClient.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

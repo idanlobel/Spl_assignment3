@@ -82,13 +82,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/Connection_thread.h">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/IO_thread.h">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/connectionHandler.h">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/connectionHandler.cpp">
+		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/Connection_thread.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/echoClient.cpp">
+		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/IO_thread.cpp">
+			<Option target="Boost_Echo_Client"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/connectionHandler.cpp">
 			<Option target="Boost_Echo_Client"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/main.cpp">

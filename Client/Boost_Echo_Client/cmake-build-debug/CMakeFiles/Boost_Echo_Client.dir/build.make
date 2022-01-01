@@ -79,22 +79,35 @@ CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/connectionHandler.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.s
 
-CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
-CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o: ../src/echoClient.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o -c /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/echoClient.cpp
+CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
+CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o: ../src/IO_thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o -c /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/IO_thread.cpp
 
-CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/echoClient.cpp > CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.i
+CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.i"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/IO_thread.cpp > CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.i
 
-CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/echoClient.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.s
+CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.s"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/IO_thread.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.s
+
+CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
+CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o: ../src/Connection_thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o -c /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/Connection_thread.cpp
+
+CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.i"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/Connection_thread.cpp > CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.i
+
+CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.s"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/Connection_thread.cpp -o CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.s
 
 CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o: CMakeFiles/Boost_Echo_Client.dir/flags.make
 CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o -c /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/main.cpp
 
 CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.i: cmake_force
@@ -108,19 +121,21 @@ CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.s: cmake_force
 # Object files for target Boost_Echo_Client
 Boost_Echo_Client_OBJECTS = \
 "CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o" \
-"CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o" \
+"CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o" \
+"CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o" \
 "CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o"
 
 # External object files for target Boost_Echo_Client
 Boost_Echo_Client_EXTERNAL_OBJECTS =
 
 Boost_Echo_Client.exe: CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o
-Boost_Echo_Client.exe: CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o
+Boost_Echo_Client.exe: CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o
+Boost_Echo_Client.exe: CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o
 Boost_Echo_Client.exe: CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o
 Boost_Echo_Client.exe: CMakeFiles/Boost_Echo_Client.dir/build.make
 Boost_Echo_Client.exe: /usr/lib/libboost_system.dll.a
 Boost_Echo_Client.exe: CMakeFiles/Boost_Echo_Client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Boost_Echo_Client.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Boost_Echo_Client.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Boost_Echo_Client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

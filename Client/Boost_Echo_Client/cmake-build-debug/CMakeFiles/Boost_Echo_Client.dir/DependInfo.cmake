@@ -8,8 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/Connection_thread.cpp" "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/Connection_thread.cpp.o"
+  "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/IO_thread.cpp" "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/IO_thread.cpp.o"
   "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/connectionHandler.cpp" "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/connectionHandler.cpp.o"
-  "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/echoClient.cpp" "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/echoClient.cpp.o"
   "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/main.cpp" "/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles/Boost_Echo_Client.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
