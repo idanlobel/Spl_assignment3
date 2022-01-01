@@ -17,6 +17,8 @@ private:
 public:
     ConnectionHandler(std::string host, short port);
     virtual ~ConnectionHandler();
+    ConnectionHandler(const ConnectionHandler &other);//copy constructor
+
  
     // Connect to the remote machine
     bool connect();

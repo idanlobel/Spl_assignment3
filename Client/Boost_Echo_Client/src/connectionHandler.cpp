@@ -102,3 +102,9 @@ void ConnectionHandler::close() {
         std::cout << "closing failed: connection already closed" << std::endl;
     }
 }
+
+ConnectionHandler::ConnectionHandler(const ConnectionHandler &other):host_(other.host_), port_(other.port_), io_service_(), socket_(io_service_)
+{
+
+}
+

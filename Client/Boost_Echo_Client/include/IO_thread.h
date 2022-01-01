@@ -6,7 +6,15 @@
 #define BOOST_ECHO_CLIENT_IO_THREAD_H
 
 
+#include "connectionHandler.h"
+
 class IO_thread {
+private:
+    ConnectionHandler c_handler;
+
+public:
+    IO_thread(ConnectionHandler ch);
+    void Run();
 
 };
 

@@ -21,7 +21,10 @@ int main(int argc, char** argv){
     std::cin>>readline;
     int index = 0;
     string command;
-    ConnectionHandler* c_handler=new ConnectionHandler("127.001.001.001",123);// enter port
+    string host=argv[0];
+    int port=std::stoi(argv[1]);
+
+    ConnectionHandler* c_handler=new ConnectionHandler(host,port);// enter port
     while(!std::equal(readline.begin(), readline.end(), "terminate")) // not sure which command terimantes all
     {
         while (readline.at(index) != ' ') {
@@ -37,57 +40,23 @@ int main(int argc, char** argv){
                 username += readline.at(index);
                 index++;
             }
-            std::vector<char> username_bytes(username.begin(), username.end());
+
 
             while (readline.at(index) != ' ') {
                 password += readline.at(index);
                 index++;
             }
-            std::vector<char> password_bytes(password.begin(), password.end());
+
 
 
             while (readline.at(index) != ' ') {
                 birthday += readline.at(index);
                 index++;
             }
-            std::vector<char> birthday_bytes(birthday.begin(), birthday.end());
-            string op_code="00000001";
-            std::vector<char> op_code_bytes(op_code.begin(), op_code.end());
+          string op_code="00000001";
 
-
-            int index=0;
-            char encoded_command[36];
-
-
-            for(index;index<op_code_bytes.size();index++)
-            {
-                encoded_command[index]=op_code_bytes[index];
-            }
-
-            for(index;index<username_bytes.size();index++)
-            {
-                encoded_command[index]=username_bytes[index];
-            }
-            encoded_command[index]=0;
-            index++;
-            for(index;index<password_bytes.size();index++)
-            {
-                encoded_command[index]=password_bytes[index];
-            }
-
-            encoded_command[index]=0;
-            index++;
-            for(index;index<birthday_bytes.size();index++)
-            {
-                encoded_command[index]=birthday_bytes[index];
-            }
-            encoded_command[index]=0;
-
-            c_handler->sendBytes(encoded_command,0);
-
-
-
-
+            string line_to_send=op_code+username+"0"+password+"0"+birthday+"0";
+            c_handler->sendLine(line_to_send);
 
 
 
