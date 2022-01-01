@@ -22,7 +22,7 @@ int main(int argc, char** argv){
     int index = 0;
     string command;
     ConnectionHandler* c_handler=new ConnectionHandler("127.001.001.001",123);// enter port
-    while(std::equal(readline.begin(), readline.end(), "terminate")) // not sure which command terimantes all
+    while(!std::equal(readline.begin(), readline.end(), "terminate")) // not sure which command terimantes all
     {
         while (readline.at(index) != ' ') {
             command += readline.at(index);
@@ -39,10 +39,6 @@ int main(int argc, char** argv){
             }
             std::vector<char> username_bytes(username.begin(), username.end());
 
-
-
-
-
             while (readline.at(index) != ' ') {
                 password += readline.at(index);
                 index++;
@@ -55,7 +51,7 @@ int main(int argc, char** argv){
                 index++;
             }
             std::vector<char> birthday_bytes(birthday.begin(), birthday.end());
-            string op_code="1";
+            string op_code="00000001";
             std::vector<char> op_code_bytes(op_code.begin(), op_code.end());
 
 

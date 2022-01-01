@@ -8,11 +8,12 @@ package bgu.spl.net.srv;
 import bgu.spl.net.api.Connections;
 
 import java.io.Closeable;
+import java.io.Serializable;
 
 /**
  * The ConnectionHandler interface for Message of type T
  */
-public interface ConnectionHandler<T> extends Closeable ,Connections<T> {
+public interface ConnectionHandler<T extends Serializable> extends Closeable ,Connections<T> {
 
      Void send(T msg);
 

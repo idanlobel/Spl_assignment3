@@ -17,6 +17,7 @@ public class EchoProtocol implements MessagingProtocol<String> {
     private String createEcho(String message) {
         String echoPart = message.substring(Math.max(message.length() - 2, 0), message.length());
         return message + " .. " + echoPart + " .. " + echoPart + " ..";
+
     }
 
     @Override

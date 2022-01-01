@@ -1,6 +1,8 @@
 package bgu.spl.net.api;
 
-public interface Connections<T> {
+import java.io.Serializable;
+
+public interface Connections<T extends Serializable>  {
 
     boolean send(int connId, T msg);
 

@@ -3,11 +3,12 @@ package bgu.spl.net.srv;
 import bgu.spl.net.api.MessageEncoderDecoder;
 import bgu.spl.net.api.MessagingProtocol;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.function.Supplier;
 
-public abstract class BaseServer<T> implements Server<T> {
+public abstract class BaseServer<T extends Serializable> implements Server<T> {
 
     private final int port;
     private final Supplier<MessagingProtocol<T>> protocolFactory;

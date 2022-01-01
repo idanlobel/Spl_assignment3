@@ -5,9 +5,10 @@ import bgu.spl.net.api.MessagingProtocol;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.Socket;
 
-public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler<T> {
+public class BlockingConnectionHandler<T extends Serializable> implements Runnable, ConnectionHandler<T> {
 
     private final MessagingProtocol<T> protocol;
     private final MessageEncoderDecoder<T> encdec;

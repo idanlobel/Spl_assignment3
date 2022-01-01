@@ -4,13 +4,14 @@ import bgu.spl.net.api.MessageEncoderDecoder;
 import bgu.spl.net.api.MessagingProtocol;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class NonBlockingConnectionHandler<T> implements ConnectionHandler<T> {
+public class NonBlockingConnectionHandler<T extends Serializable> implements ConnectionHandler<T> {
 
     private static final int BUFFER_ALLOCATION_SIZE = 1 << 13; //8k
     private static final ConcurrentLinkedQueue<ByteBuffer> BUFFER_POOL = new ConcurrentLinkedQueue<>();
@@ -48,8 +49,9 @@ public class NonBlockingConnectionHandler<T> implements ConnectionHandler<T> {
                 try {
                     while (buf.hasRemaining()) {
                         T nextMessage = encdec.decodeNextByte(buf.get());
-                        if (nextMessage != null) {
-                            T response = protocol.process(nextMessage);
+                        if (nextMessage != null) {// here i think we have fniinshed reading the whole message
+                            this.reactor.getCC().pre_procces(nextMessage);
+                            T response = protocol.process(nextMessage);// it is not even implemented WTF?
                             if (response != null) {
                                 writeQueue.add(ByteBuffer.wrap(encdec.encode(response)));
                                 reactor.updateInterestedOps(chan, SelectionKey.OP_READ | SelectionKey.OP_WRITE);

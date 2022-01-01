@@ -1,6 +1,8 @@
 package bgu.spl.net.api;
 
-public interface BidiMessagingProtocol<T> {
+import java.io.Serializable;
+
+public interface BidiMessagingProtocol<T> extends Serializable {
 
     void start(int connectionId, Connections connections);
 

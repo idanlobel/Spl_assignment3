@@ -3,6 +3,7 @@ package bgu.spl.net.srv;
 import bgu.spl.net.api.MessageEncoderDecoder;
 import bgu.spl.net.api.MessagingProtocol;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.nio.channels.ClosedSelectorException;
 import java.nio.channels.SelectionKey;
@@ -12,7 +13,7 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Supplier;
 
-public class Reactor<T> implements Server<T> {
+public class Reactor<T extends Serializable> implements Server<T> {
 
     private final int port;
     private final Supplier<MessagingProtocol<T>> protocolFactory;
@@ -55,6 +56,7 @@ public class Reactor<T> implements Server<T> {
                     if (!key.isValid()) {
                         continue;
                     } else if (key.isAcceptable()) {
+
                         handleAccept(serverSock, selector);
                     } else {
                         handleReadWrite(key);
@@ -94,7 +96,8 @@ public class Reactor<T> implements Server<T> {
                 protocolFactory.get(),
                 clientChan,
                 this);
-
+        // should we change something?
+        //or change inside continueRead?
         handler.continueRead();
 
         clientChan.register(selector, SelectionKey.OP_READ, handler);
@@ -127,9 +130,11 @@ public class Reactor<T> implements Server<T> {
         selector.close();
     }
 
-    public void get_bytes(Byte[] bytes)
+
+
+    public client_controller getCC()
     {
-        this.cc.procces_bytes(bytes);
+        return this.cc;
     }
 
 
