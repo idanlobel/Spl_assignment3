@@ -74,7 +74,7 @@ int main(int argc, char** argv){
           string op_code="00000001";
 
             string line_to_send=op_code+username+"0"+password+"0"+birthday+"0";
-            c_handler->sendLine(line_to_send);
+            c_handler.sendLine(line_to_send);
 
 
 
