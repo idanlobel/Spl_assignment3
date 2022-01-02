@@ -13,7 +13,7 @@ private:
     ConnectionHandler c_handler;
 
 public:
-    IO_thread(ConnectionHandler ch);
+    IO_thread(const ConnectionHandler& ch);
     void Run();
 
 };
