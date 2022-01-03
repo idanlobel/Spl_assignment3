@@ -60,12 +60,7 @@ public class client_controller<T extends Serializable> implements Connections<St
             } catch (IOException ex) {
                 // ignore close exception
             }
-
-
-
-
-
-        }
+    }
 
     private void dirty_work(byte[] msg_in_bytes,ConnectionHandler<String> ch)
     {
