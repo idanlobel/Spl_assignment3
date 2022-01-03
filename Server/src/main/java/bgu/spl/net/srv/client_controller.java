@@ -63,10 +63,11 @@ public class client_controller<T extends Serializable> implements Connections<St
             byte[] msg_in_bytes = bos.toByteArray();
             this.dirty_work(msg_in_bytes, ch);
             bos.close();
-        } catch (IOException ex) {
-            // ignore close exception
-        }
 
+            } catch (IOException ex) {
+                // ignore close exception
+            }
+    }
     }
 
     private void dirty_work(byte[] msg_in_bytes, ConnectionHandler<String> ch) {

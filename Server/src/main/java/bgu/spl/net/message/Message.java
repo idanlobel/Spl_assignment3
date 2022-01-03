@@ -10,4 +10,7 @@ public abstract class  Message {
         this.opcode=opcode;
     }
 
+    public Message() {
+
+    }
 }
