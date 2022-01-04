@@ -22,26 +22,30 @@ int main(int argc, char** argv){
 
 
 
-    string readline;
+   /* string readline;
     std::cin>>readline;
     int index = 0;
-    string command;
+    string command;*/
     string host=argv[0];
     int port=std::stoi(argv[1]);
 
-     const ConnectionHandler& c_handler=ConnectionHandler(host, port);// enter port
+    ConnectionHandler c_handler=ConnectionHandler(host, port);// enter port
+     c_handler.connect();
 
     Connection_thread* con_thread=new Connection_thread(c_handler);
     IO_thread* io_thread=new IO_thread(c_handler);
 
-    std::thread th_co(con_thread->Run(),);
-    std::thread th_io(io_thread->Run(),);
+    std::thread th_co(&Connection_thread::Run,con_thread);
+
+
+    std::thread th_io(&IO_thread::Run,io_thread);
 
     th_io.join();
     th_co.join();
 
 
 
+/*
 
     while(!std::equal(readline.begin(), readline.end(), "terminate")) // not sure which command terimantes all
     {
@@ -81,6 +85,7 @@ int main(int argc, char** argv){
 
         }
     }
+*/
 
 
 }

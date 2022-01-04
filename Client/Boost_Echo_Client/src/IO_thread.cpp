@@ -204,7 +204,7 @@ void IO_thread::Run() {
 
                                     }
                                     else
-                                    {
+                                    {//maybe this is bullshit
                                         if(std::equal(command.begin(), command.end(), "NOTIFICATION") | std::equal(command.begin(), command.end(), "notification"))
                                         {
                                             std::string pm_or_public;

@@ -68,7 +68,7 @@ public class client_controller<T extends Serializable> implements Connections<St
                 // ignore close exception
             }
     }
-    }
+
 
     private void dirty_work(byte[] msg_in_bytes, ConnectionHandler<String> ch) {
         //this first byte is 00000000

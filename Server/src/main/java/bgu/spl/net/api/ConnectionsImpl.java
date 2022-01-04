@@ -2,6 +2,7 @@ package bgu.spl.net.api;
 
 import bgu.spl.net.message.Message;
 import bgu.spl.net.srv.ConnectionHandler;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,6 +25,7 @@ public class ConnectionsImpl implements Connections{
         usernameToId = new ConcurrentHashMap<>();
         idToUsername = new ConcurrentHashMap<>();
         idToHandler = new ConcurrentHashMap<>();
+
     }
 
     //Use the function send() of connectionHandler in order to send message to the client -

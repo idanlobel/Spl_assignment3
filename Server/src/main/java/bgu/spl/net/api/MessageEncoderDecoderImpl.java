@@ -11,6 +11,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
 
     @Override
     public Message decodeNextByte(byte nextByte) {
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ page 2 says every message ends with ; , maybe we need to add this in c++ and here we encode every byte and check if it is ; then creatclientmessage
         if (nextByte=='\n') {
             return createClientMessage();
         }
@@ -21,9 +22,11 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     @Override
     public byte[] encode(Message message) {
         ServerResponse response = (ServerResponse) message;
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@is the second op always 0 ? because op is 2 Bytes and if first one represents numbers between 1-12 it is enought with 8 bits then second byte is = 0000 | 0000 ?
         short firstOP = response.getFirstOP();
         //Error
         if(firstOP==11) {
+            // byte byte | byte byte
             byte[] firstOPByte = shortToBytes(firstOP);
             byte[] secondOPByte = shortToBytes(response.getSecondOP());
             byte[] errorResponse = mergeBytes(firstOPByte,secondOPByte);
@@ -84,7 +87,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
 
             //Logstat, Stat
             else if (secondOP==7 || secondOP==8) {
-                short age = response.getAge();
+                short age = Short.parseShort(response.getAge());
                 byte[] ageByte = shortToBytes(age);
 
                 short numPosts = response.getNumPosts();
@@ -135,7 +138,11 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     }
 
     private short getOpFromBytes(){
-        short op = (short) ((bytes[0] & 0xff) << 8);
+//   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     why not use b.shortValue()?
+//    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    Byte b=new Byte(bytes[0]);
+//   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     short okay=b.shortValue();
+
+        short op = (short) ((bytes[0] & 0xff) << 8);//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ we did shift to left by 8 because in c++ when we encode we encode in the opposite direction?
         op += (short) (bytes[1] & 0xff);
         return op;
     }
@@ -170,7 +177,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
             clientMessage.setFollow(follow);
 
             //Username
-            String name = new String(bytes,3,len-4, StandardCharsets.UTF_8);
+            String name = new String(bytes,3,len-4, StandardCharsets.UTF_8);//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@length - 3 maybe?
             clientMessage.setUsername(name);
 
         }
@@ -211,6 +218,9 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     }
     public static byte[] shortToBytes(short num){
         byte[] bytesArr = new byte[2];
+        /*ret[0] = (byte)(x & 0xff);
+        ret[1] = (byte)((x >> 8) & 0xff);*/
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@why here you have done it reversed?
         bytesArr[0] = (byte)((num >> 8) & 0xFF);
         bytesArr[1] = (byte)(num & 0xFF);
         return bytesArr;
