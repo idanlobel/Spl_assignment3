@@ -22,6 +22,14 @@ iostream
 boost/asio.hpp
 -
 
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/Connection_thread.cpp
+../include/Connection_thread.h
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/Connection_thread.h
+
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/IO_thread.cpp
+../include/IO_thread.h
+/cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/include/IO_thread.h
+
 /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/src/main.cpp
 iostream
 -

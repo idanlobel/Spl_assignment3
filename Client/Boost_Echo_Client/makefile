@@ -3,9 +3,15 @@ LDFLAGS:=-lboost_system -lboost_thread -pthread
 
 all: EchoClient
 	g++ -o bin/BGSclient bin/connectionHandler.o bin/main.o bin/Connection_thread.o bin/IO_thread.o $(LDFLAGS)
+<<<<<<< HEAD
 
 EchoClient: bin/connectionHandler.o bin/main.o bin/Connection_thread.o bin/IO_thread.o
 
+=======
+
+EchoClient: bin/connectionHandler.o bin/main.o bin/Connection_thread.o bin/IO_thread.o
+	
+>>>>>>> 69256156c96d94952837c6dbb78f5dfe366b0652
 bin/connectionHandler.o: src/connectionHandler.cpp
 	g++ $(CFLAGS) -o bin/connectionHandler.o src/connectionHandler.cpp
 

@@ -15,6 +15,8 @@ private:
 public:
     IO_thread(const ConnectionHandler& ch);
     void Run();
+    void shortToBytes(short num, char* bytesArr);
+
 
 };
 

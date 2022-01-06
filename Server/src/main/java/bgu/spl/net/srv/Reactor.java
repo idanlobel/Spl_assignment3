@@ -23,19 +23,22 @@ public class Reactor<T extends Serializable> implements Server<T> {
     private Selector selector;
 
 
+
     private Thread selectorThread;
     private final ConcurrentLinkedQueue<Runnable> selectorTasks = new ConcurrentLinkedQueue<>();
+
 
     public Reactor(
             int numThreads,
             int port,
             Supplier<BidiMessagingProtocol<T>> protocolFactory,
-            Supplier<MessageEncoderDecoder<T>> readerFactory) {
+
 
         this.pool = new ActorThreadPool(numThreads);
         this.port = port;
         this.protocolFactory = protocolFactory;
         this.readerFactory = readerFactory;
+
     }
 
     @Override
@@ -95,6 +98,7 @@ public class Reactor<T extends Serializable> implements Server<T> {
                 protocolFactory.get(),
                 clientChan,
                 this);
+
         // should we change something?
         //or change inside continueRead?
         handler.continueRead();

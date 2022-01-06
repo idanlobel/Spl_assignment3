@@ -9,6 +9,15 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
     private Database db;
     private Client client;
 
+
+
+    public MessageProtocolImpl()
+    {
+        db=Database.getInstance();
+        connections=ConnectionsImpl.getInstance();
+        this.start(db.getConnId(),connections);
+    }
+
     /**
      * Used to initiate the current client protocol with it's personal connection ID and the connections implementation
      **/
@@ -18,6 +27,7 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
     }
     @Override
     public void start(int connectionId, Connections connections) {
+
         this.connId = connectionId;
         this.connections = (ConnectionsImpl) connections;
         this.client=null;
