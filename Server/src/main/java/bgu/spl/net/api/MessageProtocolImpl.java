@@ -11,12 +11,7 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
 
 
 
-    public MessageProtocolImpl()
-    {
-        db=Database.getInstance();
-        connections=ConnectionsImpl.getInstance();
-        this.start(db.getConnId(),connections);
-    }
+
 
     /**
      * Used to initiate the current client protocol with it's personal connection ID and the connections implementation
