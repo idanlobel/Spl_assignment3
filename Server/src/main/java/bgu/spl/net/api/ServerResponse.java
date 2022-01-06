@@ -9,7 +9,7 @@ public class ServerResponse extends Message {
     private String postingUser;
     private String content;
     private String username;
-    private String age;
+    private short age;
     private short numPosts;
     private short numFollowers;
     private short numFollowing;
@@ -45,7 +45,7 @@ public class ServerResponse extends Message {
         return username;
     }
 
-    public String getAge() {
+    public short getAge() {
         return age;
     }
 
@@ -85,8 +85,8 @@ public class ServerResponse extends Message {
         this.username = username;
     }
 
-    public void setBirthday(String birthday) {
-        this.age=birthday;
+    public void setAge(short age) {
+        this.age=age;
     }
 
     public void setNumPosts(short numPosts) {

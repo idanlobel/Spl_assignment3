@@ -2,6 +2,9 @@ package bgu.spl.net.api;
 
 import bgu.spl.net.message.Message;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -54,8 +57,8 @@ public class Client {
         isLoggedIn = loggedIn;
     }
 
-    public String getBirthday() {
-        return birthday;
+    public short getAge() {
+        return calcAge(birthday);
     }
 
     public void setBirthday(String birthday) {
@@ -148,5 +151,11 @@ public class Client {
 
     public void addToUserBLockedME(String username) {
         userBlockedMe.add(username);
+    }
+    private short calcAge(String birthday) {//calculate the age with difference betweenn DateTime.now and birthday
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate birthday1 = LocalDate.parse(birthday, formatter);
+        Period period = Period.between(birthday1, LocalDate.now());
+        return (short)period.getYears();
     }
 }

@@ -87,7 +87,9 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
 
             //Logstat, Stat
             else if (secondOP==7 || secondOP==8) {
-                short age = Short.parseShort(response.getAge());
+
+                Short age = response.getAge();
+
                 byte[] ageByte = shortToBytes(age);
 
                 short numPosts = response.getNumPosts();
@@ -177,7 +179,9 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
             clientMessage.setFollow(follow);
 
             //Username
-            String name = new String(bytes,3,len-4, StandardCharsets.UTF_8);//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@length - 3 maybe?
+
+            String name = new String(bytes,3,len-3, StandardCharsets.UTF_8);
+
             clientMessage.setUsername(name);
 
         }
@@ -218,11 +222,14 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     }
     public static byte[] shortToBytes(short num){
         byte[] bytesArr = new byte[2];
+
+        bytesArr[0] = (byte)(num & 0xFF);
+        bytesArr[1] = (byte)((num >> 8) & 0xFF);
+    
         /*ret[0] = (byte)(x & 0xff);
         ret[1] = (byte)((x >> 8) & 0xff);*/
         // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@why here you have done it reversed?
-        bytesArr[0] = (byte)((num >> 8) & 0xFF);
-        bytesArr[1] = (byte)(num & 0xFF);
+    
         return bytesArr;
     }
 

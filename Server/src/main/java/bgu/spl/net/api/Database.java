@@ -290,7 +290,7 @@ public class Database {
                 Client currUser = user.getValue();
                 ServerResponse logstat = new ServerResponse((short)10);
                 logstat.setSecondOP((short)7);
-                logstat.setBirthday(currUser.getBirthday());
+                logstat.setAge(currUser.getAge());
                 logstat.setNumPosts(currUser.getNumPosts());
                 logstat.setNumFollowing((short)currUser.getFollowing().size());
                 logstat.setNumFollowers((short)currUser.getFollowers().size());
@@ -332,7 +332,7 @@ public class Database {
             Client currUser = users.get(name);
             ServerResponse stat = new ServerResponse((short)10);
             stat.setSecondOP((short)8);
-            stat.setBirthday(currUser.getBirthday());
+            stat.setAge(currUser.getAge());
             stat.setNumPosts(currUser.getNumPosts());
             stat.setNumFollowing((short)currUser.getFollowing().size());
             stat.setNumFollowers((short)currUser.getFollowers().size());
