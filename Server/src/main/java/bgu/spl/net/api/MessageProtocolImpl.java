@@ -9,6 +9,13 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
     private Database db;
     private Client client;
 
+
+
+    public MessageProtocolImpl(int connectionid,Connections con)
+    {
+        this.start(connectionid,con);
+    }
+
     /**
      * Used to initiate the current client protocol with it's personal connection ID and the connections implementation
      **/

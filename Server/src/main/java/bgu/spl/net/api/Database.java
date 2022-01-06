@@ -42,9 +42,10 @@ public class Database {
     }
 
     private boolean isLoggedIn(String username) {
-        //why here it is not synchronized? , users is hashmap , some thread might add suddenly a user and the map would rehash and it will change the location of our specific client location
-        Client c = users.get(username);
-        return c.isLoggedIn();
+        synchronized (users) {
+            Client c = users.get(username);
+            return c.isLoggedIn();
+        }
     }
 
     public ServerResponse createError(short secondOP) {
@@ -114,8 +115,6 @@ public class Database {
         String ourUsername = client.getUsername();
         //Check if is not registered || is not logged in
         if(!isUserExist(ourUsername) || !isLoggedIn(ourUsername)) {
-            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@why not add argument string error_message to createError? here for example "user is not logged in or registered"
-            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@and then inside create error we will use set_content(error_message)
             return createError(message.getOp());
         }
 

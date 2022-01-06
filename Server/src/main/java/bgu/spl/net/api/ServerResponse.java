@@ -16,8 +16,7 @@ public class ServerResponse extends Message {
 
     public ServerResponse(short op) {
         firstOP=op;
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@second op should be 0 right? because op is 2 bytes and the first byte is our number and second one ,which is useless, it is 0
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ which means we should add first_byte_of_first_op and first_byte_of_second_op and in both ops the second byte is 0
+
 
     }
 

@@ -9,7 +9,7 @@ Connection_thread::Connection_thread(const ConnectionHandler& ch): c_handler(ch)
 }
 
 void Connection_thread::Run() {
-    this->c_handler.connect();// maybe put this in main
+   // this->c_handler.connect();// maybe put this in main
     std::string answer;
 
     while(1) {
