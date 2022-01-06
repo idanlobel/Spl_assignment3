@@ -11,7 +11,7 @@
 class Connection_thread {
 
     private:
-    const ConnectionHandler& c_handler;
+     ConnectionHandler c_handler;
 
     public:
     Connection_thread(const ConnectionHandler &ch);

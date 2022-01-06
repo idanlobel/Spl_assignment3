@@ -42,11 +42,13 @@ public class Database {
     }
 
     private boolean isLoggedIn(String username) {
+        //why here it is not synchronized? , users is hashmap , some thread might add suddenly a user and the map would rehash and it will change the location of our specific client location
         Client c = users.get(username);
         return c.isLoggedIn();
     }
 
     public ServerResponse createError(short secondOP) {
+
         ServerResponse error = new ServerResponse((short)11);
         error.setSecondOP(secondOP);
         return error;
@@ -112,12 +114,14 @@ public class Database {
         String ourUsername = client.getUsername();
         //Check if is not registered || is not logged in
         if(!isUserExist(ourUsername) || !isLoggedIn(ourUsername)) {
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@why not add argument string error_message to createError? here for example "user is not logged in or registered"
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@and then inside create error we will use set_content(error_message)
             return createError(message.getOp());
         }
 
         //Follow==0
         if (message.getFollow()==0) {
-
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@where did we set the username in message?
             String usernameToFollow = message.getUsername();
 
             //Check if user already in the following list || user doesn't exist || user blocked us || we blocked this user

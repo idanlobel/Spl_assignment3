@@ -44,16 +44,21 @@ public class NonBlockingConnectionHandler<T extends Serializable> implements Con
         }
 
         if (success) {
-            buf.flip();
+            buf.flip();// i think it flips the bytebuffer from "reading from io" to "writing to io" source:https://stackoverflow.com/questions/14792968/what-is-the-purpose-of-bytebuffers-flip-method-and-why-is-it-called-flip
             return () -> {
                 try {
                     while (buf.hasRemaining()) {
                         T nextMessage = encdec.decodeNextByte(buf.get());
                         if (nextMessage != null) {// here i think we have fniinshed reading the whole message
+
                             this.reactor.getCC().pre_procces(nextMessage,this);
                             T response = protocol.process(nextMessage);// it is not even implemented WTF?
                             if (response != null) {
-                                writeQueue.add(ByteBuffer.wrap(encdec.encode(response)));
+                                try {
+                                    writeQueue.add(ByteBuffer.wrap(encdec.encode(response)));
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                                 reactor.updateInterestedOps(chan, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
                             }
                         }

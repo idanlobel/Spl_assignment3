@@ -10,6 +10,8 @@
 #include <bitset>
 #include <vector>
 #include "../include/connectionHandler.h"
+#include "../include/Connection_thread.h"
+#include "../include/IO_thread.h"
 
 
 using namespace std;
@@ -17,14 +19,34 @@ using namespace std;
 
 
 int main(int argc, char** argv){
-    string readline;
+
+
+
+   /* string readline;
     std::cin>>readline;
     int index = 0;
-    string command;
+    string command;*/
     string host=argv[0];
     int port=std::stoi(argv[1]);
 
-    ConnectionHandler* c_handler=new ConnectionHandler(host,port);// enter port
+    ConnectionHandler c_handler=ConnectionHandler(host, port);// enter port
+     c_handler.connect();
+
+    Connection_thread* con_thread=new Connection_thread(c_handler);
+    IO_thread* io_thread=new IO_thread(c_handler);
+
+    std::thread th_co(&Connection_thread::Run,con_thread);
+
+
+    std::thread th_io(&IO_thread::Run,io_thread);
+
+    th_io.join();
+    th_co.join();
+
+
+
+/*
+
     while(!std::equal(readline.begin(), readline.end(), "terminate")) // not sure which command terimantes all
     {
         while (readline.at(index) != ' ') {
@@ -56,13 +78,14 @@ int main(int argc, char** argv){
           string op_code="00000001";
 
             string line_to_send=op_code+username+"0"+password+"0"+birthday+"0";
-            c_handler->sendLine(line_to_send);
+            c_handler.sendLine(line_to_send);
 
 
 
 
         }
     }
+*/
 
 
 }
