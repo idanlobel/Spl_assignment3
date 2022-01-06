@@ -8,8 +8,15 @@ Connection_thread::Connection_thread(const ConnectionHandler& ch): c_handler(ch)
 
 }
 
+short Connection_thread::bytesToShort(char *bytesArr)
+{
+    short result = (short)((bytesArr[0] & 0xff) << 8);
+    result += (short)(bytesArr[1] & 0xff);
+    return result;
+}
+
 void Connection_thread::Run() {
-    this->c_handler.connect();// maybe put this in main
+   // this->c_handler.connect();// maybe put this in main
     std::string answer;
 
     while(1) {
