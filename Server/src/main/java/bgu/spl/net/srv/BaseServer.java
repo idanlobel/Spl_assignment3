@@ -21,7 +21,7 @@ public abstract class BaseServer<T extends Serializable> implements Server<T> {
             Supplier<MessageEncoderDecoder<T>> encdecFactory) {
 
         this.port = port;
-        this.protocolFactory = protocolFactory; 
+        this.protocolFactory = protocolFactory;
         this.encdecFactory = encdecFactory;
 		this.sock = null;
     }
