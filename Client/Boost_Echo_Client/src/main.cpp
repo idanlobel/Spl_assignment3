@@ -21,11 +21,6 @@ using namespace std;
 int main(int argc, char** argv){
 
 
-
-   /* string readline;
-    std::cin>>readline;
-    int index = 0;
-    string command;*/
     string host=argv[0];
     int port=std::stoi(argv[1]);
 
