@@ -20,7 +20,7 @@ public class Reactor<T extends Serializable> implements Server<T> {
     private final Supplier<MessageEncoderDecoder<T>> readerFactory;
     private final ActorThreadPool pool;
     private Selector selector;
-    private client_controller cc;
+
 
 
     private Thread selectorThread;
@@ -32,7 +32,7 @@ public class Reactor<T extends Serializable> implements Server<T> {
         this.port = port;
         this.protocolFactory = protocolFactory;
         this.readerFactory = readerFactory;
-       // this.cc=new client_controller();
+
     }
 
     @Override
@@ -92,6 +92,7 @@ public class Reactor<T extends Serializable> implements Server<T> {
                 protocolFactory.get(),
                 clientChan,
                 this);
+
         // should we change something?
         //or change inside continueRead?
         handler.continueRead();
@@ -128,10 +129,7 @@ public class Reactor<T extends Serializable> implements Server<T> {
 
 
 
-    public client_controller getCC()
-    {
-        return this.cc;
-    }
+
 
 
 

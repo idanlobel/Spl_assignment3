@@ -16,6 +16,7 @@ class Connection_thread {
     public:
     Connection_thread(const ConnectionHandler &ch);
     void Run();
+    short bytesToShort(char* bytesArr);
 };
 
 

@@ -51,7 +51,7 @@ public class NonBlockingConnectionHandler<T extends Serializable> implements Con
                         T nextMessage = encdec.decodeNextByte(buf.get());
                         if (nextMessage != null) {// here i think we have fniinshed reading the whole message
 
-                          //  this.reactor.getCC().pre_procces(nextMessage,this);
+
                             T response = protocol.process(nextMessage);// it is not even implemented WTF?
                             if (response != null) {
                                 try {

@@ -11,9 +11,11 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
 
 
 
-    public MessageProtocolImpl(int connectionid,Connections con)
+    public MessageProtocolImpl()
     {
-        this.start(connectionid,con);
+        db=Database.getInstance();
+        connections=ConnectionsImpl.getInstance();
+        this.start(db.getConnId(),connections);
     }
 
     /**
@@ -21,9 +23,9 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
      **/
     @Override
     public void start(int connectionId, Connections connections) {
-        this.db = Database.getInstance();
+        //this.db = Database.getInstance();
         this.connId = connectionId;
-        this.connections = (ConnectionsImpl) connections;
+       // this.connections = (ConnectionsImpl) connections;
         this.client=null;
         this.shouldTerminate=false;
     }

@@ -9,7 +9,15 @@ IO_thread::IO_thread(const ConnectionHandler& ch): c_handler(ch) {
 
 }
 
+void IO_thread::shortToBytes(short num, char *bytesArr) {
+
+        bytesArr[0] = ((num >> 8) & 0xFF);
+        bytesArr[1] = (num & 0xFF);
+
+}
+
 void IO_thread::Run() {
+    char arr[2];
     while (1) {
         const short bufsize = 1024;
         char buf[bufsize];
@@ -56,7 +64,11 @@ void IO_thread::Run() {
                 birthday += line.at(index);
                 index++;
             }
-            std::string send_me="01"+username+"0"+password+"0"+birthday+"0";
+
+            this->shortToBytes(1, arr);
+            this->c_handler.sendBytes(arr, 2);
+
+            std::string send_me=username+"0"+password+"0"+birthday+"0";
            this->c_handler.sendLine(send_me);
 
         }
@@ -82,7 +94,10 @@ void IO_thread::Run() {
                     index++;
                 }
                 //current captcha is always 1 (the last byte in send_me)
-                std::string send_me="02"+username+"0"+password+"0"+"1";
+
+                this->shortToBytes(2, arr);
+                this->c_handler.sendBytes(arr, 2);
+                std::string send_me=username+"0"+password+"0"+"1";
                 this->c_handler.sendLine(send_me);
 
 
@@ -91,8 +106,9 @@ void IO_thread::Run() {
             {
                 if(std::equal(command.begin(), command.end(), "LOGOUT") | std::equal(command.begin(), command.end(), "logout"))
                 {
-                    std::string send_me="03";
-                    this->c_handler.sendLine(send_me);
+                    this->shortToBytes(3, arr);
+                    this->c_handler.sendBytes(arr, 2);
+
                 }
                 else
                 {
@@ -116,6 +132,9 @@ void IO_thread::Run() {
                             index++;
                         }
 
+                        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                        
                         std::string send_me="1004"+follow_or_unfollow+username+"0";
                         this->c_handler.sendLine(send_me);
                     }
@@ -129,7 +148,10 @@ void IO_thread::Run() {
                                 content += line.at(index);
                                 index++;
                             }
-                            std::string send_me="05"+content+"0";
+
+                            this->shortToBytes(5, arr);
+                            this->c_handler.sendBytes(arr, 2);
+                            std::string send_me=content+"0";
                             this->c_handler.sendLine(send_me);
 
                         }
@@ -166,21 +188,25 @@ void IO_thread::Run() {
                                 std::strftime(buffer,80,"%d-%m-%Y-%H-%M",timeinfo);
                                 std::puts(buffer);
                                 std::string time=buffer;
-                                std::string send_me="06"+username+"0"+content+"0"+time+"0";
+                                this->shortToBytes(6, arr);
+                                this->c_handler.sendBytes(arr, 2);
+                                std::string send_me=username+"0"+content+"0"+time+"0";
                                 this->c_handler.sendLine(send_me);
                             }
                             else
                             {
                                 if(std::equal(command.begin(), command.end(), "LOGSTAT")|std::equal(command.begin(), command.end(), "logstat"))
                                 {
-                                    std::string send_me="07";
-                                    this->c_handler.sendLine(send_me);
+
+                                    this->shortToBytes(7, arr);
+                                    this->c_handler.sendBytes(arr, 2);
+
                                 }
                                 else
                                 {
                                     if(std::equal(command.begin(), command.end(), "STAT")|std::equal(command.begin(), command.end(), "stat"))
                                     {
-                                        std::string send_me="08";
+                                        std::string send_me;
                                         std::string checkme=command.substr(index);
                                         std::string listofusers;
 
@@ -200,6 +226,8 @@ void IO_thread::Run() {
                                         }
 
                                         send_me+="0";
+                                        this->shortToBytes(8, arr);
+                                        this->c_handler.sendBytes(arr, 2);
                                         this->c_handler.sendLine(send_me);
 
                                     }
@@ -235,8 +263,9 @@ void IO_thread::Run() {
                                                 content += line.at(index);
                                                 index++;
                                             }
-
-                                            std::string send_me="09"+pm_or_public+username+"0"+content+"0";
+                                            this->shortToBytes(9, arr);
+                                            this->c_handler.sendBytes(arr, 2);
+                                            std::string send_me=pm_or_public+username+"0"+content+"0";
                                             this->c_handler.sendLine(send_me);
                                         }
                                         else
@@ -259,7 +288,9 @@ void IO_thread::Run() {
                                                         username += line.at(index);
                                                         index++;
                                                     }
-                                                    std::string send_me="12"+username+"0";
+                                                    this->shortToBytes(12, arr);
+                                                    this->c_handler.sendBytes(arr, 2);
+                                                    std::string send_me=username+"0";
                                                     this->c_handler.sendLine(send_me);
                                                 }
                                             }
