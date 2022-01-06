@@ -90,7 +90,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
 
             //Logstat, Stat
             else if (secondOP==7 || secondOP==8) {
-                short age = Short.parseShort(response.getAge());
+                  short age = response.getAge();
                 byte[] ageByte = shortToBytes(age);
 
                 short numPosts = response.getNumPosts();
