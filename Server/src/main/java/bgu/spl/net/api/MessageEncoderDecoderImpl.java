@@ -84,8 +84,8 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
 
             //Logstat, Stat
             else if (secondOP==7 || secondOP==8) {
-                String age = response.getAge();
-                byte[] ageByte = age.getBytes(StandardCharsets.UTF_8);
+                Short age = response.getAge();
+                byte[] ageByte = shortToBytes(age);
 
                 short numPosts = response.getNumPosts();
                 byte[] numPostsByte = shortToBytes(numPosts);
@@ -170,7 +170,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
             clientMessage.setFollow(follow);
 
             //Username
-            String name = new String(bytes,3,len-4, StandardCharsets.UTF_8);
+            String name = new String(bytes,3,len-3, StandardCharsets.UTF_8);
             clientMessage.setUsername(name);
 
         }
@@ -211,8 +211,8 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     }
     public static byte[] shortToBytes(short num){
         byte[] bytesArr = new byte[2];
-        bytesArr[0] = (byte)((num >> 8) & 0xFF);
-        bytesArr[1] = (byte)(num & 0xFF);
+        bytesArr[1] = (byte)((num >> 8) & 0xFF);
+        bytesArr[0] = (byte)(num & 0xFF);
         return bytesArr;
     }
 
