@@ -12,13 +12,10 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
     /**
      * Used to initiate the current client protocol with it's personal connection ID and the connections implementation
      **/
-    public  MessageProtocolImpl(){
-        this.db = Database.getInstance();
-        start(db.getConnId(),ConnectionsImpl.getInstance());
-    }
     @Override
     public void start(int connectionId, Connections connections) {
         this.connId = connectionId;
+        this.db = Database.getInstance();
         this.connections = (ConnectionsImpl) connections;
         this.client=null;
         this.shouldTerminate=false;
