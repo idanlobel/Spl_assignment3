@@ -4,7 +4,7 @@ import bgu.spl.net.api.*;
 import bgu.spl.net.srv.Reactor;
 
 public class ReactorServer {
-    public static void Main(String[] args){
+    public static void main(String[] args){
         Database db=Database.getInstance();
         Connections connections= ConnectionsImpl.getInstance();
         int port;

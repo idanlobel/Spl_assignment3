@@ -7,7 +7,7 @@ import bgu.spl.net.srv.Reactor;
 public class TPCServer {
     Database db=Database.getInstance();
     ConnectionsImpl connections= ConnectionsImpl.getInstance();
-    public static void Main(String[] args){
+    public static void main(String[] args){
         Database db=Database.getInstance();
         Connections connections= ConnectionsImpl.getInstance();
         int port;
@@ -19,7 +19,6 @@ public class TPCServer {
         }
         else {
             port = Integer.parseInt(args[0]);
-            numOfThreads = Integer.parseInt(args[1]);
         }
         BaseServerImpl server = new BaseServerImpl(port
                 ,()-> {return new MessageProtocolImpl<>();}
