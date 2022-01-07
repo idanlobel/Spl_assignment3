@@ -5,7 +5,9 @@
 #include "../include/IO_thread.h"
 
 
-IO_thread::IO_thread(ConnectionHandler& ch): c_handler(ch) {
+
+IO_thread::IO_thread(ConnectionHandler& ch): c_handler(ch),shouldTerminate(false) {
+
 
 }
 
@@ -15,6 +17,7 @@ void IO_thread::shortToBytes(short num, char *bytesArr) {
     bytesArr[1] = (num & 0xFF);
 
 }
+
 
 void IO_thread::Run() {
     //this->c_handler.connect();

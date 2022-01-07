@@ -4,7 +4,9 @@
 
 #include "../include/Connection_thread.h"
 
-Connection_thread::Connection_thread(ConnectionHandler& ch): c_handler(ch) {
+
+Connection_thread::Connection_thread(ConnectionHandler& ch): c_handler(ch),shouldTerminate(false) {
+
 
 }
 
@@ -15,9 +17,11 @@ short Connection_thread::bytesToShort(char *bytesArr)
     return result;
 }
 
+
 void Connection_thread::Run() {
 
     this->c_handler.connect();// maybe put this in main
+
 
     std::string answer;
 

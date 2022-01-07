@@ -19,5 +19,4 @@ class Connection_thread {
     short bytesToShort(char* bytesArr);
 };
 
-
 #endif //BOOST_ECHO_CLIENT_CONNECTION_THREAD_H
