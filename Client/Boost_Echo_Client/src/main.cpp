@@ -18,11 +18,14 @@
 
 int main(int argc, char** argv){
 
+    if (argc < 3) {
+        std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
+        return -1;
+    }
+    std::string host=argv[1];
+    int port=std::stoi(argv[2]);
 
-    std::string host=argv[0];
-    int port=std::stoi(argv[1]);
-
-    ConnectionHandler c_handler=ConnectionHandler(host, port);// enter port
+    ConnectionHandler c_handler(host, port);// enter port
      //c_handler.connect();
 
     Connection_thread* con_thread=new Connection_thread(c_handler);
