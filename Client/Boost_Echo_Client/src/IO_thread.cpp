@@ -5,7 +5,7 @@
 #include "../include/IO_thread.h"
 
 
-IO_thread::IO_thread(const ConnectionHandler& ch): c_handler(ch) {
+IO_thread::IO_thread(const ConnectionHandler& ch): c_handler(ch),shouldTerminate(false) {
 
 }
 
@@ -16,7 +16,7 @@ void IO_thread::shortToBytes(short num, char *bytesArr) {
 
 }
 
-void IO_thread::Run() {
+void IO_thread::operator()() {
     char arr[2];
     while (1) {
         const short bufsize = 1024;

@@ -14,10 +14,9 @@ class Connection_thread {
      ConnectionHandler c_handler;
 
     public:
-    Connection_thread(const ConnectionHandler &ch);
+    Connection_thread(const ConnectionHandler &ch,bool shouldTerminate);
     void Run();
     short bytesToShort(char* bytesArr);
 };
-
 
 #endif //BOOST_ECHO_CLIENT_CONNECTION_THREAD_H
