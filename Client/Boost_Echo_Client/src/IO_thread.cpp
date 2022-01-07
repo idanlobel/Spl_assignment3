@@ -11,12 +11,13 @@ IO_thread::IO_thread(ConnectionHandler& ch): c_handler(ch) {
 
 void IO_thread::shortToBytes(short num, char *bytesArr) {
 
-        bytesArr[0] = ((num >> 8) & 0xFF);
-        bytesArr[1] = (num & 0xFF);
+    bytesArr[0] = ((num >> 8) & 0xFF);
+    bytesArr[1] = (num & 0xFF);
 
 }
 
 void IO_thread::Run() {
+    //this->c_handler.connect();
     char arr[2];
     while (1) {
         const short bufsize = 1024;
@@ -25,12 +26,14 @@ void IO_thread::Run() {
         std::string line(buf);
         std::string command;
         int index=0;
-        while (line.at(index) != ' ') {
+
+        int linesize=static_cast<int>(line.size());
+        while (index <linesize && line.at(index) != ' ') {
             command += line.at(index);
             index++;
         }
 
-        while(line.at(index)==' ')
+        while(index <linesize && line.at(index)==' ')
         {
             index++;
         }
@@ -39,37 +42,40 @@ void IO_thread::Run() {
             std::string username;
             std::string password;
             std::string birthday;
-            while (line.at(index) != ' ') {
+            while (index <linesize && line.at(index) != ' ') {
                 username += line.at(index);
                 index++;
             }
 
-            while(line.at(index)==' ')
+            while(index <linesize && line.at(index)==' ')
             {
                 index++;
             }
 
 
-            while (line.at(index) != ' ') {
+            while (index <linesize && line.at(index) != ' ') {
                 password += line.at(index);
                 index++;
             }
-            while(line.at(index)==' ')
+            while(index <linesize && line.at(index)==' ')
             {
                 index++;
             }
 
 
-            while (line.at(index) != ' ') {
+            while (index <linesize && line.at(index) != ' ') {
                 birthday += line.at(index);
                 index++;
             }
 
+            std::cout<<"i am hererere"<<std::endl;
+
             this->shortToBytes(1, arr);
             this->c_handler.sendBytes(arr, 2);
+            std::cout<<"i am hererere"<<std::endl;
 
             std::string send_me=username+"0"+password+"0"+birthday+"0";
-           this->c_handler.sendLine(send_me);
+            this->c_handler.sendLine(send_me);
 
         }
         else
@@ -78,18 +84,18 @@ void IO_thread::Run() {
             {
                 std::string username;
                 std::string password;
-                while (line.at(index) != ' ') {
+                while (index <linesize && line.at(index) != ' ') {
                     username += line.at(index);
                     index++;
                 }
 
-                while(line.at(index)==' ')
+                while(index <linesize && line.at(index)==' ')
                 {
                     index++;
                 }
 
 
-                while (line.at(index) != ' ') {
+                while (index <linesize && line.at(index) != ' ') {
                     password += line.at(index);
                     index++;
                 }
@@ -116,28 +122,28 @@ void IO_thread::Run() {
                     {
                         std::string follow_or_unfollow;
                         std::string username;
-                        while (line.at(index) != ' ') {
+                        while (index <linesize && line.at(index) != ' ') {
                             follow_or_unfollow += line.at(index);
                             index++;
                         }
 
-                        while(line.at(index)==' ')
+                        while(index <linesize && line.at(index)==' ')
                         {
                             index++;
                         }
 
 
-                        while (line.at(index) != ' ') {
+                        while (index <linesize && line.at(index) != ' ') {
                             username += line.at(index);
                             index++;
                         }
 
                         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
                         this->shortToBytes(10, arr);
                         this->c_handler.sendBytes(arr, 2);
                         this->shortToBytes(4, arr);
                         this->c_handler.sendBytes(arr, 2);
+
                         std::string send_me=follow_or_unfollow+username+"0";
                         this->c_handler.sendLine(send_me);
                     }
@@ -147,7 +153,7 @@ void IO_thread::Run() {
                         {
                             std::string content;
 
-                            while (line.at(index) != ' ') {
+                            while (index <linesize && line.at(index) != ' ') {
                                 content += line.at(index);
                                 index++;
                             }
@@ -165,18 +171,18 @@ void IO_thread::Run() {
 
                                 std::string username;
                                 std::string content;
-                                while (line.at(index) != ' ') {
+                                while (index <linesize && line.at(index) != ' ') {
                                     username += line.at(index);
                                     index++;
                                 }
 
-                                while(line.at(index)==' ')
+                                while(index <linesize && line.at(index)==' ')
                                 {
                                     index++;
                                 }
 
 
-                                while (line.at(index) != ' ') {
+                                while (index <linesize && line.at(index) != ' ') {
                                     content += line.at(index);
                                     index++;
                                 }
@@ -241,28 +247,28 @@ void IO_thread::Run() {
                                             std::string pm_or_public;
                                             std::string username;
                                             std::string content;
-                                            while (line.at(index) != ' ') {
+                                            while (index <linesize && line.at(index) != ' ') {
                                                 pm_or_public += line.at(index);
                                                 index++;
                                             }
 
-                                            while(line.at(index)==' ')
+                                            while(index <linesize && line.at(index)==' ')
                                             {
                                                 index++;
                                             }
 
 
-                                            while (line.at(index) != ' ') {
+                                            while (index <linesize && line.at(index) != ' ') {
                                                 username += line.at(index);
                                                 index++;
                                             }
 
-                                            while(line.at(index)==' ')
+                                            while(index <linesize && line.at(index)==' ')
                                             {
                                                 index++;
                                             }
 
-                                            while (line.at(index) != ' ') {
+                                            while (index <linesize && line.at(index) != ' ') {
                                                 content += line.at(index);
                                                 index++;
                                             }
@@ -275,7 +281,7 @@ void IO_thread::Run() {
                                         {
                                             if(std::equal(command.begin(), command.end(), "ACK") | std::equal(command.begin(), command.end(), "ack"))
                                             {
-                                                    // i think i should ddelete this case
+                                                // i think i should ddelete this case
                                             }
                                             else
                                             {
@@ -287,7 +293,7 @@ void IO_thread::Run() {
                                                 {//it is block
 
                                                     std::string username;
-                                                    while (line.at(index) != ' ') {
+                                                    while (index <linesize && line.at(index) != ' ') {
                                                         username += line.at(index);
                                                         index++;
                                                     }
@@ -317,6 +323,6 @@ void IO_thread::Run() {
 
 
 
-    }
+}
 
 
