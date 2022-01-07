@@ -12,7 +12,7 @@
 #include "../include/connectionHandler.h"
 #include "../include/Connection_thread.h"
 #include "../include/IO_thread.h"
-
+#include <thread>
 
 using namespace std;
 
@@ -32,8 +32,8 @@ int main(int argc, char** argv){
 
     std::thread con_thread=std::thread(Connection_thread(c_handler));
     std::thread io_thread=std::thread(IO_thread(c_handler));
-    th_io.join();
-    th_co.join();
+    io_thread.join();
+    con_thread.join();
 
 
 
