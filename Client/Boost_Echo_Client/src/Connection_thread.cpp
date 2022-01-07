@@ -16,7 +16,7 @@ short Connection_thread::bytesToShort(char *bytesArr)
 }
 
 void Connection_thread::Run() {
-   // this->c_handler.connect();// maybe put this in main
+    this->c_handler.connect();// maybe put this in main
     std::string answer;
 
     while(1) {

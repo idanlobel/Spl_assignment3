@@ -14,21 +14,21 @@
 #include "../include/IO_thread.h"
 
 
-using namespace std;
-
 
 
 int main(int argc, char** argv){
 
 
-    string host=argv[0];
+    std::string host=argv[0];
     int port=std::stoi(argv[1]);
 
     ConnectionHandler c_handler=ConnectionHandler(host, port);// enter port
-     c_handler.connect();
+     //c_handler.connect();
 
     Connection_thread* con_thread=new Connection_thread(c_handler);
     IO_thread* io_thread=new IO_thread(c_handler);
+
+
 
     std::thread th_co(&Connection_thread::Run,con_thread);
 

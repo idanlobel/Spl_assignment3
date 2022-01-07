@@ -134,8 +134,11 @@ void IO_thread::Run() {
 
                         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-                        
-                        std::string send_me="1004"+follow_or_unfollow+username+"0";
+                        this->shortToBytes(10, arr);
+                        this->c_handler.sendBytes(arr, 2);
+                        this->shortToBytes(4, arr);
+                        this->c_handler.sendBytes(arr, 2);
+                        std::string send_me=follow_or_unfollow+username+"0";
                         this->c_handler.sendLine(send_me);
                     }
                     else
