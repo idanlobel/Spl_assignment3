@@ -14,7 +14,6 @@
 #include "../include/IO_thread.h"
 #include <thread>
 
-using namespace std;
 
 
 
@@ -24,11 +23,23 @@ int main(int argc, char** argv){
         std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
         return -1;
     }
-    string host=argv[1];
+
+    std::string host=argv[1];
     int port=std::stoi(argv[2]);
 
     ConnectionHandler c_handler(host, port);// enter port
-    //c_handler.connect();
+     //c_handler.connect();
+
+    Connection_thread* con_thread=new Connection_thread(c_handler);
+    IO_thread* io_thread=new IO_thread(c_handler);
+
+
+
+    std::thread th_co(&Connection_thread::Run,con_thread);
+
+
+    std::thread th_io(&IO_thread::Run,io_thread);
+
 
     std::thread con_thread=std::thread(Connection_thread(c_handler));
     std::thread io_thread=std::thread(IO_thread(c_handler));
