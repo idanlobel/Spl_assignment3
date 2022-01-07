@@ -5,7 +5,7 @@
 #include "../include/IO_thread.h"
 
 
-IO_thread::IO_thread(const ConnectionHandler& ch): c_handler(ch),shouldTerminate(false) {
+IO_thread::IO_thread(ConnectionHandler& ch): c_handler(ch),shouldTerminate(false) {
 
 }
 

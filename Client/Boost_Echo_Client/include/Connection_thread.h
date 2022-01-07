@@ -14,7 +14,7 @@ class Connection_thread {
      ConnectionHandler c_handler;
 
     public:
-    Connection_thread(const ConnectionHandler &ch,bool shouldTerminate);
+    Connection_thread(ConnectionHandler &ch);
     void Run();
     short bytesToShort(char* bytesArr);
 };

@@ -4,7 +4,7 @@
 
 #include "../include/Connection_thread.h"
 
-Connection_thread::Connection_thread(const ConnectionHandler& ch): c_handler(ch) {
+Connection_thread::Connection_thread(ConnectionHandler& ch): c_handler(ch),shouldTerminate(false) {
 
 }
 

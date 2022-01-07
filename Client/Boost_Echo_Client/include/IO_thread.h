@@ -13,7 +13,7 @@ private:
     ConnectionHandler c_handler;
 
 public:
-    IO_thread(const ConnectionHandler& ch,bool shouldTerminate);
+    IO_thread(ConnectionHandler& ch);
     void Run();
     void shortToBytes(short num, char* bytesArr);
 
