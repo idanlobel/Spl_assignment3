@@ -27,6 +27,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     public byte[] encode(Message message) {
         ServerResponse response = (ServerResponse) message;
         short firstOP = response.getFirstOP();
+System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
         //Error
         if(firstOP==11) {
             // byte byte | byte byte
@@ -148,6 +149,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
 
     private ClientMessage createClientMessage() {
         short op = getOpFromBytes();
+System.out.println("op is "+op);
         ClientMessage clientMessage = new ClientMessage(op);
 
         //Logout, Logstat
@@ -199,7 +201,9 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
         //Register, PM
         else if (op==1 || op==6) {
             String str = new String(bytes,2,len-3, StandardCharsets.UTF_8);
-            String [] strArr = str.split("\0");
+		System.out.println(str);
+            String [] strArr = str.split("0");
+
             if (op==1) {
                 clientMessage.setUsername(strArr[0]);
                 clientMessage.setPassword(strArr[1]);
@@ -213,6 +217,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
         }
         bytes = new byte[1 << 10];
         len = 0;
+System.out.println("i am here");
         return clientMessage;
     }
     public static byte[] shortToBytes(short num){

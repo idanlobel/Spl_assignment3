@@ -52,7 +52,7 @@ public class NonBlockingConnectionHandler<T extends Serializable> implements Con
                         T nextMessage = encdec.decodeNextByte(buf.get());
                         if (nextMessage != null) {// here i think we have fniinshed reading the whole message
 
-
+System.out.println("i am inside blockingholder");
                             T response = protocol.process(nextMessage);// it is not even implemented WTF?
                             if (response != null) {
                                 try {
