@@ -11,12 +11,7 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
 
 
 
-    public MessageProtocolImpl()
-    {
-        db=Database.getInstance();
-        connections=ConnectionsImpl.getInstance();
-        this.start(db.getConnId(),connections);
-    }
+
 
     /**
      * Used to initiate the current client protocol with it's personal connection ID and the connections implementation
@@ -36,6 +31,7 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
 
     @Override
     public Message process(Message message) {
+	System.out.println(message.toString());
         ClientMessage clientMessage = (ClientMessage)message;
         int op = clientMessage.getOp();
         switch (op){
@@ -71,6 +67,7 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
 
     public ServerResponse register (ClientMessage message) {
         ServerResponse response = db.register(message, connId);
+	System.out.println(message.toString());
 
         //Only after successful register, save the current client, and save the client in the hashmap in connections
         if (response.getFirstOP()==(short)10) {

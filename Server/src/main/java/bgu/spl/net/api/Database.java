@@ -66,6 +66,7 @@ public class Database {
             //Create client
             Client c = new Client(message.getUsername(), message.getPassword(), message.getBirthday(), connId);
             users.put(message.getUsername(), c);
+		System.out.println("regisdterd "+message.getUsername());
 
             //Create Ack
             response = new ServerResponse((short)10);
