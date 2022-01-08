@@ -5,9 +5,7 @@
 #include "../include/IO_thread.h"
 
 
-
-IO_thread::IO_thread(ConnectionHandler& ch): c_handler(ch),shouldTerminate(false) {
-
+IO_thread::IO_thread(ConnectionHandler& ch): c_handler(ch) {
 
 }
 
@@ -18,9 +16,8 @@ void IO_thread::shortToBytes(short num, char *bytesArr) {
 
 }
 
-
 void IO_thread::Run() {
-    //this->c_handler.connect();
+    this->c_handler.connect();
     char arr[2];
     while (1) {
         const short bufsize = 1024;
@@ -29,13 +26,11 @@ void IO_thread::Run() {
         std::string line(buf);
         std::string command;
         int index=0;
-
         int linesize=static_cast<int>(line.size());
         while (index <linesize && line.at(index) != ' ') {
             command += line.at(index);
             index++;
         }
-
         while(index <linesize && line.at(index)==' ')
         {
             index++;
@@ -49,13 +44,10 @@ void IO_thread::Run() {
                 username += line.at(index);
                 index++;
             }
-
             while(index <linesize && line.at(index)==' ')
             {
                 index++;
             }
-
-
             while (index <linesize && line.at(index) != ' ') {
                 password += line.at(index);
                 index++;
@@ -64,22 +56,28 @@ void IO_thread::Run() {
             {
                 index++;
             }
-
-
             while (index <linesize && line.at(index) != ' ') {
                 birthday += line.at(index);
                 index++;
             }
-
-            std::cout<<"i am hererere"<<std::endl;
-
             this->shortToBytes(1, arr);
             this->c_handler.sendBytes(arr, 2);
-            std::cout<<"i am hererere"<<std::endl;
+            std::string send_me=username+"0"+password+"0"+birthday+"0;";
+            //register okay passw 12-12-1999
+        /*    char sendme[static_cast<int>(send_me.size())];
+           for(unsigned int i=0;i<send_me.length();i++)
+           {
+            sendme[i]=send_me[i];
+           }*/
 
-            std::string send_me=username+"0"+password+"0"+birthday+"0";
-            this->c_handler.sendLine(send_me);
+            //register okay passw 12-12-1999
 
+           // this->c_handler.sendBytes(sendme,static_cast<int>(send_me.size()));
+
+
+
+            // this->c_handler.sendBytes(send_me.c_str(),send_me.size());
+          this->c_handler.sendLine(send_me);
         }
         else
         {
@@ -316,10 +314,10 @@ void IO_thread::Run() {
             }
         }
 
-        if (!this->c_handler.sendLine(line)) {
+      /*  if (!this->c_handler.sendLine(line)) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             break;
-        }
+        }*/
 
 
     }

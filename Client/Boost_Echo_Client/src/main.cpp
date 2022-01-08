@@ -23,7 +23,6 @@ int main(int argc, char** argv){
         std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
         return -1;
     }
-
     std::string host=argv[1];
     int port=std::stoi(argv[2]);
 
@@ -37,14 +36,10 @@ int main(int argc, char** argv){
 
     std::thread th_co(&Connection_thread::Run,con_thread);
 
-
     std::thread th_io(&IO_thread::Run,io_thread);
 
-
-    std::thread con_thread=std::thread(Connection_thread(c_handler));
-    std::thread io_thread=std::thread(IO_thread(c_handler));
-    io_thread.join();
-    con_thread.join();
+    th_io.join();
+    th_co.join();
 
 
 
