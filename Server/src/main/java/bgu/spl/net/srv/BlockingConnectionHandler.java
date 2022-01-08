@@ -33,9 +33,11 @@ public class BlockingConnectionHandler<T extends Serializable> implements Runnab
             in = new BufferedInputStream(sock.getInputStream());
             out = new BufferedOutputStream(sock.getOutputStream());
 
+System.out.println("i am in run in blocking connection handler ");
             while (!protocol.shouldTerminate() && connected && (read = in.read()) >= 0) {
                     T nextMessage = encdec.decodeNextByte((byte) read);
                 if (nextMessage != null) {
+	System.out.println("sddsdsds");
                     T response = protocol.process(nextMessage);
                     if (response != null) {
                         out.write(encdec.encode(response));

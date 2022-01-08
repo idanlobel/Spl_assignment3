@@ -29,7 +29,7 @@ bool ConnectionHandler::connect() {
         std::cerr << "Connection failed (Error: " << e.what() << ')' << std::endl;
         return false;
     }
-    std::cout<<"socket connected it is goood"<<std::endl;
+
     return true;
 }
 
@@ -50,11 +50,12 @@ bool ConnectionHandler::getBytes(char bytes[], unsigned int bytesToRead) {
 }
 
 bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
+    //register okay passw 12-12-1999
     int tmp = 0;
     boost::system::error_code error;
     try {
         while (!error && bytesToWrite > tmp ) {
-            tmp += socket_.write_some(boost::asio::buffer(bytes + tmp, bytesToWrite - tmp), error);
+           tmp += socket_.write_some(boost::asio::buffer(bytes + tmp, bytesToWrite - tmp), error);
         }
         if(error)
             throw boost::system::system_error(error);
@@ -66,11 +67,28 @@ bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
 }
 
 bool ConnectionHandler::getLine(std::string& line) {
-    return getFrameAscii(line, '\n');
+    return getFrameAscii(line, '\0');
 }
 
 bool ConnectionHandler::sendLine(std::string& line) {
-    return sendFrameAscii(line, '\n');
+
+ /*   for(unsigned int i=0;i<line.size();i++)
+    {
+        char send_me [1];
+        send_me[0]=line.at(i);
+        bool send=false;
+        while(!send)
+        {
+            send=this->sendBytes(send_me,1);
+        }
+
+    }
+
+    return true;*/
+
+
+
+    return sendFrameAscii(line, '\0');
 }
 
 bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
@@ -90,6 +108,9 @@ bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
 }
 
 bool ConnectionHandler::sendFrameAscii(const std::string& frame, char delimiter) {
+
+
+
     bool result=sendBytes(frame.c_str(),frame.length());
     if(!result) return false;
     return sendBytes(&delimiter,1);

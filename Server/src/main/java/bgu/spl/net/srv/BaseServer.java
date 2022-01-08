@@ -32,6 +32,7 @@ public abstract class BaseServer<T extends Serializable> implements Server<T> {
 
         try (ServerSocket serverSock = new ServerSocket(port)) {
 			System.out.println("Server started");
+		
 
             this.sock = serverSock; //just to be able to close
 
@@ -43,7 +44,6 @@ public abstract class BaseServer<T extends Serializable> implements Server<T> {
                         clientSock,
                         encdecFactory.get(),
                         protocolFactory.get());
-
                 execute(handler);
             }
         } catch (IOException ex) {
