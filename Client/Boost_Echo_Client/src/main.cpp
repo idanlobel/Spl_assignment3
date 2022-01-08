@@ -12,26 +12,29 @@
 #include "../include/connectionHandler.h"
 #include "../include/Connection_thread.h"
 #include "../include/IO_thread.h"
+#include <thread>
 
-
-using namespace std;
 
 
 
 int main(int argc, char** argv){
 
+    if (argc < 3) {
+        std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
+        return -1;
+    }
+    std::string host=argv[1];
+    int port=std::stoi(argv[2]);
 
-    string host=argv[0];
-    int port=std::stoi(argv[1]);
-
-    ConnectionHandler c_handler=ConnectionHandler(host, port);// enter port
-     c_handler.connect();
+    ConnectionHandler c_handler(host, port);// enter port
+     //c_handler.connect();
 
     Connection_thread* con_thread=new Connection_thread(c_handler);
     IO_thread* io_thread=new IO_thread(c_handler);
 
-    std::thread th_co(&Connection_thread::Run,con_thread);
 
+
+    std::thread th_co(&Connection_thread::Run,con_thread);
 
     std::thread th_io(&IO_thread::Run,io_thread);
 

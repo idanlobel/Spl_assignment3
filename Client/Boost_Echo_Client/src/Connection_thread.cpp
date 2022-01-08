@@ -4,7 +4,7 @@
 
 #include "../include/Connection_thread.h"
 
-Connection_thread::Connection_thread(const ConnectionHandler& ch): c_handler(ch) {
+Connection_thread::Connection_thread(ConnectionHandler& ch): c_handler(ch) {
 
 }
 
@@ -16,8 +16,11 @@ short Connection_thread::bytesToShort(char *bytesArr)
 }
 
 void Connection_thread::Run() {
-   // this->c_handler.connect();// maybe put this in main
+
+    this->c_handler.connect();// maybe put this in main
+
     std::string answer;
+
 
     while(1) {
         if (!this->c_handler.getLine(answer)) {
@@ -31,12 +34,13 @@ void Connection_thread::Run() {
         //		// we filled up to the \n char - we must make sure now that a 0 char is also present. So we truncate last character.
         std::string first_word;
         int index=0;
-        while(answer.at(index)!=' ')
+        int linesize=static_cast<int>(answer.size());
+        while(index <linesize && answer.at(index)!=' ')
         {
             first_word+=answer.at(index);
             index++;
         }
-        while(answer.at(index)==' ')
+        while(index <linesize && answer.at(index)==' ')
         {
             index++;
         }
@@ -45,25 +49,25 @@ void Connection_thread::Run() {
             std::string PM_public;
             std::string posting_user;
             std::string content;
-            while(answer.at(index)!=' ')
+            while(index <linesize && answer.at(index)!=' ')
             {
                 PM_public+=answer.at(index);
                 index++;
             }
-            while(answer.at(index)==' ')
+            while(index <linesize && answer.at(index)==' ')
             {
                 index++;
             }
-            while(answer.at(index)!=' ')
+            while(index <linesize && answer.at(index)!=' ')
             {
                 posting_user+=answer.at(index);
                 index++;
             }
-            while(answer.at(index)==' ')
+            while(index <linesize && answer.at(index)==' ')
             {
                 index++;
             }
-            while(answer.at(index)!=' ')
+            while(index <linesize && answer.at(index)!=' ')
             {
                 content+=answer.at(index);
                 index++;
@@ -78,44 +82,44 @@ void Connection_thread::Run() {
                 std::string message_opcode;
                 std::string optional="";
 
-                while(answer.at(index)!=' ')
+                while(index <linesize && answer.at(index)!=' ')
                 {
                     message_opcode+=answer.at(index);
                     index++;
                 }
-                while(answer.at(index)==' ')
+                while(index <linesize && answer.at(index)==' ')
                 {
                     index++;
                 }
-                while(answer.at(index)!=' ')
+                while(index <linesize && answer.at(index)!=' ')
                 {
                     optional+=answer.at(index);
                     index++;
                 }
-               if(optional!="")
-               {
+                if(optional!="")
+                {
 
-                   std::string space_delimiter = " ";
-                   std::vector<std::string> words{};
+                    std::string space_delimiter = " ";
+                    std::vector<std::string> words{};
 
-                   size_t pos = 0;
-                   while ((pos = optional.find(space_delimiter)) != std::string::npos) {
-                       words.push_back(optional.substr(0, pos));
-                       optional.erase(0, pos + space_delimiter.length());
-                   }
-                   std::cout<<first_word<<" "<<message_opcode<<" "<<optional<<std::endl;
-               }
-               else
-               {
-                   std::cout<<first_word<<" "<<message_opcode<<std::endl;
-               }
+                    size_t pos = 0;
+                    while ((pos = optional.find(space_delimiter)) != std::string::npos) {
+                        words.push_back(optional.substr(0, pos));
+                        optional.erase(0, pos + space_delimiter.length());
+                    }
+                    std::cout<<first_word<<" "<<message_opcode<<" "<<optional<<std::endl;
+                }
+                else
+                {
+                    std::cout<<first_word<<" "<<message_opcode<<std::endl;
+                }
 
             }
             else//it is error
             {
                 std::string message_opcode;
 
-                while(answer.at(index)!=' ')
+                while(index <linesize && answer.at(index)!=' ')
                 {
                     message_opcode+=answer.at(index);
                     index++;

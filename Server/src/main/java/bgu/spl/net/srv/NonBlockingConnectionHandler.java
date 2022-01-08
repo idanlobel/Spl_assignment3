@@ -1,5 +1,6 @@
 package bgu.spl.net.srv;
 
+import bgu.spl.net.api.BidiMessagingProtocol;
 import bgu.spl.net.api.MessageEncoderDecoder;
 import bgu.spl.net.api.MessagingProtocol;
 
@@ -16,7 +17,7 @@ public class NonBlockingConnectionHandler<T extends Serializable> implements Con
     private static final int BUFFER_ALLOCATION_SIZE = 1 << 13; //8k
     private static final ConcurrentLinkedQueue<ByteBuffer> BUFFER_POOL = new ConcurrentLinkedQueue<>();
 
-    private final MessagingProtocol<T> protocol;
+    private final BidiMessagingProtocol<T> protocol;
     private final MessageEncoderDecoder<T> encdec;
     private final Queue<ByteBuffer> writeQueue = new ConcurrentLinkedQueue<>();
     private final SocketChannel chan;
@@ -24,7 +25,7 @@ public class NonBlockingConnectionHandler<T extends Serializable> implements Con
 
     public NonBlockingConnectionHandler(
             MessageEncoderDecoder<T> reader,
-            MessagingProtocol<T> protocol,
+            BidiMessagingProtocol<T> protocol,
             SocketChannel chan,
             Reactor reactor) {
         this.chan = chan;
@@ -51,7 +52,7 @@ public class NonBlockingConnectionHandler<T extends Serializable> implements Con
                         T nextMessage = encdec.decodeNextByte(buf.get());
                         if (nextMessage != null) {// here i think we have fniinshed reading the whole message
 
-
+System.out.println("i am inside blockingholder");
                             T response = protocol.process(nextMessage);// it is not even implemented WTF?
                             if (response != null) {
                                 try {

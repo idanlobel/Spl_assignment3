@@ -1,4 +1,10 @@
-C:\Users\bayan\AppData\Local\JetBrains\CLion2021.2\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client
--- Configuring done
--- Generating done
--- Build files have been written to: /cygdrive/c/Users/bayan/Desktop/HW3/Client/Boost_Echo_Client/cmake-build-debug
+/opt/clion-2021.2.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" "/home/spl211/Desktop/my spl3/Client/Boost_Echo_Client"
+CMake Error at /opt/clion-2021.2.3/bin/cmake/linux/share/cmake-3.20/Modules/FindBoost.cmake:1793 (file):
+  file STRINGS file "/cygdrive/c/cygwin64/usr/include/boost/version.hpp"
+  cannot be read.
+Call Stack (most recent call first):
+  CMakeLists.txt:7 (find_package)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/spl211/Desktop/my spl3/Client/Boost_Echo_Client/cmake-build-debug/CMakeFiles/CMakeOutput.log".
