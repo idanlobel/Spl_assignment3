@@ -16,18 +16,19 @@ short Connection_thread::bytesToShort(char *bytesArr)
 }
 
 void Connection_thread::Run() {
-
-    this->c_handler.connect();// maybe put this in main
-
-    std::string answer;
-
+    this->c_handler.connect();
 
     while(1) {
+        std::string answer;
         if (!this->c_handler.getLine(answer)) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             break;
         }
 
+        std::cout << answer << std::endl;
+        int len=answer.length();
+
+      //  answer.resize(len-1);
         //do we get string from sever after all this process? if yes then good
         //first word is eaither notfication, ack or error
         //if it is printied with 0 at end then we should do asnwer.length-1 look at echoclient notes // A C string must end with a 0 char delimiter.  When we filled the answer buffer from the socket
@@ -44,6 +45,7 @@ void Connection_thread::Run() {
         {
             index++;
         }
+
         if(std::equal(first_word.begin(), first_word.end(), "NOTIFICATION") | std::equal(first_word.begin(), first_word.end(), "notification") )
         {
             std::string PM_public;
