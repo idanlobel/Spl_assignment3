@@ -189,7 +189,7 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
         else if (op==2) {
             String str = new String(bytes,2,len-4, StandardCharsets.UTF_8);
             System.out.println("message string: "+str);
-            String [] login = str.split("0");
+            String [] login = str.split("\0");
             clientMessage.setUsername(login[0]);
             clientMessage.setPassword(login[1]);
             System.out.println("password: "+login[1]);
@@ -206,7 +206,7 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
         else if (op==1 || op==6) {
             String str = new String(bytes,2,len-3, StandardCharsets.UTF_8);
 		System.out.println(str);
-            String[] strArr = str.split("0");
+            String[] strArr = str.split("\0");
 
             if (op==1) {
                 clientMessage.setUsername(strArr[0]);
