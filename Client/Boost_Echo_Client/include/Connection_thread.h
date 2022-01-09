@@ -11,7 +11,7 @@
 class Connection_thread {
 
     private:
-     ConnectionHandler c_handler;
+     ConnectionHandler &c_handler;
 
     public:
     Connection_thread(ConnectionHandler &ch);

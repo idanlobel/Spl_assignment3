@@ -72,22 +72,6 @@ bool ConnectionHandler::getLine(std::string& line) {
 
 bool ConnectionHandler::sendLine(std::string& line) {
 
- /*   for(unsigned int i=0;i<line.size();i++)
-    {
-        char send_me [1];
-        send_me[0]=line.at(i);
-        bool send=false;
-        while(!send)
-        {
-            send=this->sendBytes(send_me,1);
-        }
-
-    }
-
-    return true;*/
-
-
-
     return sendFrameAscii(line, '\0');
 }
 
@@ -97,8 +81,13 @@ bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
     // Notice that the null character is not appended to the frame string.
     try {
         do{
+            //register bayan passw 12-12-1999
             getBytes(&ch, 1);
-            frame.append(1, ch);
+
+            std::cout<<"ch is   "<<ch<<std::endl;
+
+           frame.append(1, ch);
+           std::cout<<"frame is  "<<frame;
         }while (delimiter != ch);
     } catch (std::exception& e) {
         std::cerr << "recv failed (Error: " << e.what() << ')' << std::endl;
@@ -129,4 +118,12 @@ ConnectionHandler::ConnectionHandler(const ConnectionHandler &other):host_(other
 {
 
 }
+
+short ConnectionHandler::bytesToShort(char *bytesArr)
+{
+    short result = (short)((bytesArr[0] & 0xff) << 8);
+    result += (short)(bytesArr[1] & 0xff);
+    return result;
+}
+
 

@@ -16,17 +16,26 @@ short Connection_thread::bytesToShort(char *bytesArr)
 }
 
 void Connection_thread::Run() {
-
-    this->c_handler.connect();// maybe put this in main
-
-    std::string answer;
-
+   // this->c_handler.connect();
 
     while(1) {
+        std::string answer;
         if (!this->c_handler.getLine(answer)) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             break;
         }
+
+    std::cout<<"asnwer is "<<answer;
+
+        //register bayan passw 12-12-1999
+
+
+        //register bayan passw 12-12-1999
+
+        int len=answer.length();
+        answer.resize(len-1);
+
+
 
         //do we get string from sever after all this process? if yes then good
         //first word is eaither notfication, ack or error
@@ -44,6 +53,7 @@ void Connection_thread::Run() {
         {
             index++;
         }
+
         if(std::equal(first_word.begin(), first_word.end(), "NOTIFICATION") | std::equal(first_word.begin(), first_word.end(), "notification") )
         {
             std::string PM_public;
