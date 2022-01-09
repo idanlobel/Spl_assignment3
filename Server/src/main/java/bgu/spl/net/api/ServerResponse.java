@@ -2,7 +2,9 @@ package bgu.spl.net.api;
 
 import bgu.spl.net.message.Message;
 
-public class ServerResponse extends Message {
+import java.io.Serializable;
+
+public class ServerResponse extends Message implements Serializable {
     private short firstOP;
     private short secondOP;
     private char notificationType; //PM or Public

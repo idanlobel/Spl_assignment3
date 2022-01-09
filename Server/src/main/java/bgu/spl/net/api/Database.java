@@ -57,7 +57,6 @@ public class Database {
 
     public ServerResponse register(ClientMessage message, int connId) {
         ServerResponse response;
-
         //Check if client already registered
         if(isUserExist(message.getUsername())) {
             return createError(message.getOp());
