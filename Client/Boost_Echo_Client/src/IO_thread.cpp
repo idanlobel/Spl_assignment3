@@ -70,7 +70,7 @@ void IO_thread::Run() {
             sendme[i]=send_me[i];
            }*/
 
-            //register okay passw 12-12-1999
+            //register bayan passw 12-12-1999
 
            // this->c_handler.sendBytes(sendme,static_cast<int>(send_me.size()));
 
@@ -314,10 +314,10 @@ void IO_thread::Run() {
             }
         }
 
-      /*  if (!this->c_handler.sendLine(line)) {
-            std::cout << "Disconnected. Exiting...\n" << std::endl;
-            break;
-        }*/
+//       if (!this->c_handler {
+//            std::cout << "Disconnected. Exiting...\n" << std::endl;
+//            break;
+//        /
 
 
     }

@@ -38,7 +38,9 @@ bool ConnectionHandler::getBytes(char bytes[], unsigned int bytesToRead) {
     boost::system::error_code error;
     try {
         while (!error && bytesToRead > tmp ) {
+
             tmp += socket_.read_some(boost::asio::buffer(bytes+tmp, bytesToRead-tmp), error);
+
         }
         if(error)
             throw boost::system::system_error(error);
@@ -72,31 +74,16 @@ bool ConnectionHandler::getLine(std::string& line) {
 
 bool ConnectionHandler::sendLine(std::string& line) {
 
- /*   for(unsigned int i=0;i<line.size();i++)
-    {
-        char send_me [1];
-        send_me[0]=line.at(i);
-        bool send=false;
-        while(!send)
-        {
-            send=this->sendBytes(send_me,1);
-        }
-
-    }
-
-    return true;*/
-
-
-
     return sendFrameAscii(line, '\0');
 }
 
 bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
-    char ch;
+    char ch ;
     // Stop when we encounter the null character.
     // Notice that the null character is not appended to the frame string.
     try {
         do{
+
             getBytes(&ch, 1);
             frame.append(1, ch);
         }while (delimiter != ch);

@@ -10,7 +10,7 @@
 
 class IO_thread {
 private:
-    ConnectionHandler c_handler;
+    ConnectionHandler &c_handler;
 
 public:
     IO_thread(ConnectionHandler& ch);
