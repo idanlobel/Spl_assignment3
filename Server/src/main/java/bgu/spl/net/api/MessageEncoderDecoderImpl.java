@@ -16,7 +16,8 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     }
     @Override
     public Message decodeNextByte(byte nextByte) {
-        if (nextByte=='\n') {
+        if (nextByte==';') {
+            System.out.println("I'm create client message");
             return createClientMessage();
         }
         pushByte(nextByte);
@@ -51,7 +52,7 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
             byte [] postingUserByte = charArrToBytes(charArr);
 
             //Zero byte array
-            byte[] zero = {'\0'};
+            byte[] zero = {'0'};
 
             //Content byte array
             String content = response.getContent();
@@ -115,6 +116,8 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
             //Generic Ack
             else {
                 byte[] responseByte = mergeBytes(firstOPByte,secondOPByte);
+                System.out.println("first op:"+bytesToShort(firstOPByte));
+                System.out.println("second op:"+bytesToShort(secondOPByte));
                 return responseByte;
             }
         }
@@ -144,14 +147,13 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
     private short getOpFromBytes(){
         short op = (short) ((bytes[0] & 0xff) << 8);
         op += (short) (bytes[1] & 0xff);
+        System.out.println("op is:"+op);
         return op;
     }
 
     private ClientMessage createClientMessage() {
         short op = getOpFromBytes();
-System.out.println("op is "+op);
         ClientMessage clientMessage = new ClientMessage(op);
-
         //Logout, Logstat
 //        NOT NEEDED - DO NOTHING
 //        if(op==3 || op==7) {
@@ -186,12 +188,14 @@ System.out.println("op is "+op);
         //Login
         else if (op==2) {
             String str = new String(bytes,2,len-4, StandardCharsets.UTF_8);
-            String [] login = str.split("\0");
+            System.out.println("message string: "+str);
+            String [] login = str.split("0");
             clientMessage.setUsername(login[0]);
             clientMessage.setPassword(login[1]);
-
+            System.out.println("password: "+login[1]);
             //captcha byte
             String cap = new String(bytes,len-1,1, StandardCharsets.UTF_8);
+            System.out.println("captcha byte:"+cap);
             char[] capArr = cap.toCharArray();
             char captcha = capArr[0];
             clientMessage.setCaptcha(captcha);
@@ -202,7 +206,7 @@ System.out.println("op is "+op);
         else if (op==1 || op==6) {
             String str = new String(bytes,2,len-3, StandardCharsets.UTF_8);
 		System.out.println(str);
-            String [] strArr = str.split("0");
+            String[] strArr = str.split("0");
 
             if (op==1) {
                 clientMessage.setUsername(strArr[0]);
@@ -215,15 +219,16 @@ System.out.println("op is "+op);
                 clientMessage.setSendDate(strArr[2]);
             }
         }
+        System.out.println(clientMessage.getUsername()+","+clientMessage.getPassword()+","+clientMessage.getBirthday());
         bytes = new byte[1 << 10];
         len = 0;
-System.out.println("i am here");
+        System.out.println(clientMessage.toString());
         return clientMessage;
     }
     public static byte[] shortToBytes(short num){
         byte[] bytesArr = new byte[2];
-        bytesArr[1] = (byte)((num >> 8) & 0xFF);
-        bytesArr[0] = (byte)(num & 0xFF);
+        bytesArr[0] = (byte)((num >> 8) & 0xFF);
+        bytesArr[1] = (byte)(num & 0xFF);
         return bytesArr;
     }
 

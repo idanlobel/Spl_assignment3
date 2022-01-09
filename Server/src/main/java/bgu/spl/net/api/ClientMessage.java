@@ -2,7 +2,9 @@ package bgu.spl.net.api;
 
 import bgu.spl.net.message.Message;
 
-public class ClientMessage extends Message {
+import java.io.Serializable;
+
+public class ClientMessage extends Message implements Serializable {
     private short op;
     private String username;
     private String password;
