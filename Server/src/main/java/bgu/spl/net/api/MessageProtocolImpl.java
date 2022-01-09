@@ -71,9 +71,9 @@ public class MessageProtocolImpl<T> implements BidiMessagingProtocol<Message> {
         //Only after successful register, save the current client, and save the client in the hashmap in connections
         if (response.getFirstOP()==(short)10) {
             client = db.getUser(message.getUsername());
-            System.out.println("UserName:"+client.getUsername());
+
             connections.addIdAndUsername(connId,client.getUsername());
-            System.out.println("connectionId:"+connId);
+       
         }
         return response;
     }

@@ -17,7 +17,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     @Override
     public Message decodeNextByte(byte nextByte) {
         if (nextByte==';') {
-            System.out.println("I'm create client message");
+
             return createClientMessage();
         }
         pushByte(nextByte);
@@ -28,7 +28,7 @@ public class MessageEncoderDecoderImpl<T> implements MessageEncoderDecoder<Messa
     public byte[] encode(Message message) {
         ServerResponse response = (ServerResponse) message;
         short firstOP = response.getFirstOP();
-System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
+
         //Error
         if(firstOP==11) {
             // byte byte | byte byte
@@ -52,7 +52,8 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
             byte [] postingUserByte = charArrToBytes(charArr);
 
             //Zero byte array
-            byte[] zero = {'0'};
+           byte[] zero = {'0'};
+            // byte[] zero = {'\0'};
 
             //Content byte array
             String content = response.getContent();
@@ -81,7 +82,8 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
                 String username = response.getUsername();
                 char[] charArr1 = username.toCharArray();
                 byte [] usernameByte = charArrToBytes(charArr1);
-                byte[] zero = {'\0'};
+                byte[] zero = {'0'};
+                // byte[] zero = {'\0'};
 
                 byte[] b1 = mergeBytes(firstOPByte,secondOPByte);
                 byte[] b2 = mergeBytes(b1, usernameByte);
@@ -116,8 +118,7 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
             //Generic Ack
             else {
                 byte[] responseByte = mergeBytes(firstOPByte,secondOPByte);
-                System.out.println("first op:"+bytesToShort(firstOPByte));
-                System.out.println("second op:"+bytesToShort(secondOPByte));
+
                 return responseByte;
             }
         }
@@ -147,7 +148,7 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
     private short getOpFromBytes(){
         short op = (short) ((bytes[0] & 0xff) << 8);
         op += (short) (bytes[1] & 0xff);
-        System.out.println("op is:"+op);
+
         return op;
     }
 
@@ -188,14 +189,15 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
         //Login
         else if (op==2) {
             String str = new String(bytes,2,len-4, StandardCharsets.UTF_8);
-            System.out.println("message string: "+str);
-            String [] login = str.split("\0");
+
+//            String [] login = str.split("\0");
+            String [] login = str.split("0");
             clientMessage.setUsername(login[0]);
             clientMessage.setPassword(login[1]);
-            System.out.println("password: "+login[1]);
+
             //captcha byte
             String cap = new String(bytes,len-1,1, StandardCharsets.UTF_8);
-            System.out.println("captcha byte:"+cap);
+
             char[] capArr = cap.toCharArray();
             char captcha = capArr[0];
             clientMessage.setCaptcha(captcha);
@@ -205,8 +207,9 @@ System.out.println("OP SHOULD BE 01, and it is : "+firstOP);
         //Register, PM
         else if (op==1 || op==6) {
             String str = new String(bytes,2,len-3, StandardCharsets.UTF_8);
-		System.out.println(str);
-            String[] strArr = str.split("\0");
+
+           // String[] strArr = str.split("\0");
+            String[] strArr = str.split("0");
 
             if (op==1) {
                 clientMessage.setUsername(strArr[0]);
