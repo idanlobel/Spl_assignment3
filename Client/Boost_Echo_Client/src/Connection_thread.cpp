@@ -16,7 +16,7 @@ short Connection_thread::bytesToShort(char *bytesArr)
 }
 
 void Connection_thread::Run() {
-    this->c_handler.connect();
+   // this->c_handler.connect();
 
     while(1) {
         std::string answer;
@@ -25,10 +25,18 @@ void Connection_thread::Run() {
             break;
         }
 
-        std::cout << answer << std::endl;
-        int len=answer.length();
+    std::cout<<"asnwer is "<<answer;
 
-      //  answer.resize(len-1);
+        //register bayan passw 12-12-1999
+
+
+        //register bayan passw 12-12-1999
+
+        int len=answer.length();
+        answer.resize(len-1);
+
+
+
         //do we get string from sever after all this process? if yes then good
         //first word is eaither notfication, ack or error
         //if it is printied with 0 at end then we should do asnwer.length-1 look at echoclient notes // A C string must end with a 0 char delimiter.  When we filled the answer buffer from the socket

@@ -25,11 +25,10 @@ int main(int argc, char** argv){
     }
     std::string host=argv[1];
     int port=std::stoi(argv[2]);
-
     ConnectionHandler c_handler(host, port);// enter port
 
 
-   // c_handler.connect();
+    c_handler.connect();
 
     IO_thread io_thread= IO_thread(c_handler);
     Connection_thread con_thread= Connection_thread(c_handler);
